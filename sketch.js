@@ -18,7 +18,7 @@ function setup(){
     world = engine.world;
 
 
-    attachedLog = new Log(250,180,100,PI/2);
+  
     ground = new Ground(600,height,1200,20);
     platform = new Ground(150, 305, 300, 170);
 
@@ -39,7 +39,7 @@ function setup(){
 
     bird = new Bird(100,100);
 
-   chain = new Chain(bird.body,attachedLog.body)
+   slingshot= new Slingshot(bird.body,{x:200,y:60})
 
 }
 
@@ -66,7 +66,11 @@ function draw(){
 
     bird.display();
     platform.display();
-    attachedLog.display();
-    chain.display();
-
+    slingshot.display()
+}
+function mouseDragged(){
+    Matter.Body.setPosition(bird.body,{x:mouseX,y:mouseY})
+}
+function mouseReleased(){
+    slingshot.fly()
 }
